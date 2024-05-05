@@ -17,7 +17,7 @@ const LandingScreen = ({ navigation }) => {
 
   const fetchScbaForms = async () => {
     try {
-      const response = await axios.get(`${baseEndpoint}/forms`);
+      const response = await axios.get(`${baseEndpoint}/scba_forms`);
       if (response.status === 200) {
         setScbaForms(response.data);
       } else {
@@ -30,7 +30,8 @@ const LandingScreen = ({ navigation }) => {
 
   useEffect(() => {
     // replace with API data
-    setScbaForms(scbaFormData);
+    fetchScbaForms();
+    // setScbaForms(scbaFormData);
   }, []);
 
   const handleFormSelection = (formId) => {
