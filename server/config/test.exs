@@ -14,7 +14,7 @@ config :server, Server.Repo,
 # you can enable the server option below.
 config :server, ServerWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "Af7mX/ekbp8D6X6U8Z5vvl4LM1o7Mpkj/308kx95zIF6cB9Zecig7rRqAvP8RyYC",
+  secret_key_base: "Vi04j1HKkE3JI9/BiwuS0bqIwOESvfkPq8yOlMyOt6eTL4Rh1Bg3o0RUSkFO7vG6",
   server: false
 
 # In test we don't send emails.

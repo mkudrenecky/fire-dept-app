@@ -20,7 +20,7 @@ config :server, ServerWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "2ZnlZraNBi4VDdDnvnHwK7tYOQ9NDs0N6G/xWzjGtzDyxLjPGekx0sk64xFe4+fj",
+  secret_key_base: "FFX100kQT79u0K84J5doNdaW8v7u4QjckDSvkiZJp9iLeUNfRXbiprb0GuQu9vjZ",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:server, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:server, ~w(--watch)]}

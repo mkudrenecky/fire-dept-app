@@ -20,7 +20,7 @@ config :server, ServerWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Server.PubSub,
-  live_view: [signing_salt: "cwQomcwE"]
+  live_view: [signing_salt: "v+nwymsG"]
 
 # Configures the mailer
 #
