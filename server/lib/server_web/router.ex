@@ -21,9 +21,10 @@ defmodule ServerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ServerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ServerWeb do
+    pipe_through :api
+    resources "/scba_forms", SCBAFormController, except: [:new, :edit]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:server, :dev_routes) do
