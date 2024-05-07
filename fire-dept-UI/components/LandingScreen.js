@@ -10,33 +10,51 @@ import {
 import axios from "axios";
 import { Checkbox } from "react-native-paper";
 import { scbaFormData } from "./data"; // Import mock data
+import { baseEndpoint } from "../config/config";
 
 const LandingScreen = ({ navigation }) => {
   const [scbaForms, setScbaForms] = useState([]);
   const [completedForms, setCompletedForms] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchScbaForms = async () => {
     try {
       const response = await axios.get(`${baseEndpoint}/scba_forms`);
       if (response.status === 200) {
-        setScbaForms(response.data);
+        console.log("API Response:", response.data);
+        setScbaForms(response.data.data);
       } else {
+        console.log("Failed to fetch SCBA forms");
         Alert.alert("Error", "Failed to fetch SCBA forms.");
       }
     } catch (error) {
+      console.error("Error fetching SCBA forms:", error);
       Alert.alert("Error", "An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     // replace with API data
     fetchScbaForms();
-    // setScbaForms(scbaFormData);
   }, []);
+
+  useEffect(() => {
+    console.log("Updated scbaForms state:", scbaForms);
+  }, [scbaForms]);
 
   const handleFormSelection = (formId) => {
     navigation.navigate("InspectionForm", { formId });
   };
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -52,13 +70,13 @@ const LandingScreen = ({ navigation }) => {
               style={styles.formName}
               onPress={() => handleFormSelection(item.id)}
             >
-              <Text>{item.name}</Text>
+              <Text>SCBA {item.unit_number}</Text>
             </TouchableOpacity>
 
             {/* View to wrap the checkbox with a border */}
             <View style={styles.checkboxContainer}>
               <Checkbox
-                status={completedForms[item.id] ? "checked" : "unchecked"}
+                status={item.complete ? "checked" : "unchecked"}
                 disabled // Disable checkbox since it's auto-checked based on completion status
               />
             </View>

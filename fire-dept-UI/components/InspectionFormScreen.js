@@ -34,10 +34,15 @@ const InspectionFormScreen = ({ navigation, route }) => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${baseEndpoint}/inspection`, data);
+      data.completed = true;
+      const response = await axios.patch(
+        `${baseEndpoint}/scba_forms/${formId}/`,
+        data
+      );
 
       if (response.status === 201) {
         Alert.alert("Success", "Form submitted successfully.");
+        navigation.navigate("Landing");
       } else {
         Alert.alert("Submission failed", "Please try again.");
       }
